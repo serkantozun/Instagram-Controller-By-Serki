@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "Instagram Controller by Serki",
+  "version": "1.15.0",
+  "minimum_chrome_version": "111",
+  "description": "Instagram Reels ve videolarında sarma, hız, ses, duraklatma, tam ekran, resim içinde resim, ekolayzer, otomatik kaydırma, arka planda oynatma, kaliteli video, görsel (ZIP) ve hikaye indirme.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://*.instagram.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.instagram.com/*"
+      ],
+      "js": [
+        "inject.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://*.instagram.com/*"
+      ],
+      "js": [
+        "mux.js",
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
